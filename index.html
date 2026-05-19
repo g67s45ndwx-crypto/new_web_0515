@@ -1,158 +1,258 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Starbucks Slider</title>
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Noto Sans KR", sans-serif;
-        }
+  <!-- 아이콘 -->
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
-        section {
-            position: relative;
-            width: 1600px;
-            margin: 0 auto;
-            min-height: 100vh;
-            background-color: skyblue;
-            padding: 100px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            
-        }
+  <style>
 
-        header {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 20px 100px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:sans-serif;
+    }
 
-        header .logo {
-            position: relative;
-            max-width: 80px;
-        }
+    body{
+      width:100%;
+      height:100vh;
+      overflow:hidden;
+      background:#8fd3f4;
+      position:relative;
+    }
 
-        header ul {
-            position: relative;
-            display: flex;
-        }
+    /* ================= NAV ================= */
 
-        header ul li {
-            list-style: none;
-        }
+    header{
+      width:100%;
+      padding:30px 80px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      position:absolute;
+      top:0;
+      left:0;
+      z-index:10;
+    }
 
-        header ul li a {
-            display: inline-block;
-            color: #333;
-            margin-left: 40px;
-            text-decoration: none;
-        }
+    .logo{
+      width:80px;
+    }
 
-        .content {
-            position: relative;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    nav ul{
+      display:flex;
+      gap:50px;
+      list-style:none;
+    }
 
-        .content .textBox {
-            position: relative;
-            max-width: 600px;
-        }
+    nav ul li a{
+      text-decoration:none;
+      color:#333;
+      font-size:18px;
+    }
 
-        .content .textBox h2 {
-            color: #333;
-            font-size: 4em;
-            line-height: 1.4em;
-            font-weight: 500;
-        }
-        .content .textBox h2 span {
-            color: #017143;
-            font-size: 1.2em;
-            font-weight: 900;
-        }
-        .content .textBox a {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 8px 20px;
-            background: #017143;
-            color: #fff;
-            border-radius: 40px;
-            font-weight: 500;
-            letter-spacing: 1px;
-            text-decoration: none;
-        }
+    /* ================= CONTENT ================= */
 
-        .content .imgBox {
-            width: 600px;
-            background-color: orange;
-            display: flex;
-            justify-content: flex-end;
-            padding-right: 50px;
-            margin-top: 50px;
+    .content{
+      width:100%;
+      height:100vh;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:0 90px;
+      position:relative;
+      z-index:2;
+    }
 
-        }
+    .textBox{
+      max-width:500px;
+    }
 
-        .content .imgBox img {
-            max-width: 340px;
-        }
+    .textBox h1{
+      font-size:80px;
+      color:#333;
+      line-height:1.2;
+    }
 
-        .thumb {
-            position: absolute;
-            left: 50%;
-            bottom: 20px;
-            display: flex;
-            transform: translateX(-50%);
-        }
+    .textBox h1 span{
+      color:#006241;
+      font-weight:bold;
+    }
 
-    </style>
+    .textBox p{
+      margin-top:20px;
+      color:#444;
+      line-height:1.6;
+    }
+
+    .btn{
+      display:inline-block;
+      margin-top:30px;
+      padding:12px 30px;
+      background:#006241;
+      color:white;
+      border-radius:30px;
+      text-decoration:none;
+      font-weight:bold;
+    }
+
+    /* ================= 큰 초록 반원 ================= */
+
+    .circle{
+      position:absolute;
+      width:1100px;
+      height:1100px;
+      background:#006241;
+      border-radius:50%;
+      right:-450px;
+      top:50%;
+      transform:translateY(-50%);
+      z-index:1;
+      transition:0.5s;
+    }
+
+    /* ================= 큰 음료 이미지 ================= */
+
+    .main-drink{
+      width:340px;
+      position:absolute;
+      right:180px;
+      top:50%;
+      transform:translateY(-50%);
+      z-index:5;
+      transition:0.5s;
+    }
+
+    /* ================= 썸네일 ================= */
+
+    .thumb{
+      position:absolute;
+      bottom:30px;
+      left:50%;
+      transform:translateX(-50%);
+      display:flex;
+      gap:40px;
+      z-index:10;
+    }
+
+    .thumb img{
+      width:80px;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .thumb img:hover{
+      transform:translateY(-15px);
+    }
+
+    /* ================= SNS ================= */
+
+    .social{
+      position:absolute;
+      right:40px;
+      top:50%;
+      transform:translateY(-50%);
+      display:flex;
+      flex-direction:column;
+      gap:25px;
+      z-index:10;
+    }
+
+    .social i{
+      color:white;
+      font-size:30px;
+      cursor:pointer;
+    }
+
+  </style>
 </head>
-<body>
-    
-    <section>
-        <div class="circle"></div>
-        <header>
-            <a href="" class="logo"><img src="./imgs/logo.png" alt=""></a>
-            <ul>
-                <li><a href="">Home</a></li>
-                <li><a href="">Menu</a></li>
-                <li><a href="">What's New</a></li>
-                <li><a href="">Contact</a></li>
-            </ul>
-        </header>
-        <div class="content">
-            <div class="textBox">
-                <h2>It's not just Coffee<br>It's <span>Starbucks</span></h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis culpa eum, soluta ab placeat, voluptas molestiae est excepturi consequatur aliquid voluptatibus enim qui tempore eaque voluptates dolores iusto iste nostrum.</p>
-                <a href="">Learn More</a>
-            </div>
 
-            <div class="imgBox">
-                <img src="./imgs/img1.png" alt="">
-            </div>
-        </div>
-        <ul class="thumb">
-            <li><img src="./imgs/thumb1.png" alt=""></li>
-            <li><img src="./imgs/thumb2.png" alt=""></li>
-            <li><img src="./imgs/thumb3.png" alt=""></li>
-        </ul>
-        <ul class="sci">
-            <li><a href=""><img src="./imgs/facebook.png" alt=""></a></li>
-            <li><a href=""><img src="./imgs/twitter.png" alt=""></a></li>
-            <li><a href=""><img src="./imgs/instagram.png" alt=""></a></li>
-        </ul>
-    </section>
+<body>
+
+  <!-- 헤더 -->
+  <header>
+
+    <img src="imgs/logo.png" class="logo">
+
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Menu</a></li>
+        <li><a href="#">What's New</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+
+  </header>
+
+  <!-- 초록 반원 -->
+  <div class="circle"></div>
+
+  <!-- 내용 -->
+  <section class="content">
+
+    <div class="textBox">
+
+      <h1>
+        It's not just Coffee<br>
+        It's <span id="titleColor">Starbucks</span>
+      </h1>
+
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        Omnis culpa eaem, soluta ab placeat.
+      </p>
+
+      <a href="#" class="btn">Learn More</a>
+
+    </div>
+
+  </section>
+
+  <!-- 큰 음료 -->
+  <img src="imgs/img1.png" class="main-drink" id="bigDrink">
+
+  <!-- 썸네일 -->
+  <div class="thumb">
+
+    <img src="imgs/img1.png"
+    onclick="changeDrink('img1.png','#006241')">
+
+    <img src="imgs/img2.png"
+    onclick="changeDrink('img2.png','#ffb6c1')">
+
+    <img src="imgs/img3.png"
+    onclick="changeDrink('img3.png','#ff1493')">
+
+  </div>
+
+  <!-- SNS -->
+  <div class="social">
+    <i class="fa-brands fa-facebook-f"></i>
+    <i class="fa-brands fa-twitter"></i>
+    <i class="fa-brands fa-instagram"></i>
+  </div>
+
+  <script>
+
+    function changeDrink(image,color){
+
+      // 큰 이미지 변경
+      document.getElementById("bigDrink").src = image;
+
+      // 반원 색 변경
+      document.querySelector(".circle").style.background = color;
+
+      // Starbucks 글자 색 변경
+      document.getElementById("titleColor").style.color = color;
+    }
+
+  </script>
+
 </body>
 </html>
